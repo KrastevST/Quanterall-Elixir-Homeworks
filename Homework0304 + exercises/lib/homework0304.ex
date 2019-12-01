@@ -1,6 +1,6 @@
 #1.
   defmodule Ex1 do
-    def check_type(input) when is_list(input), do: anounce_list(input)
+    def check_type([input]) when is_list(input), do: anounce_list(input)
     def check_type(input) when is_tuple(input), do: anounce_tuple(input) |> check_type
     def check_type(input) when is_map(input), do: anounce_map(input) |> check_type
 
@@ -53,13 +53,25 @@
 #5. && 6.
   defmodule Ex5 do
     # [%{name: "Tom", age: 14}, %{name: "Jerry", age: 21}, %{name: "Donald", age: 18}]
-    def convert(data) do
+    def item_tostring(data) do
       Enum.map(data, fn
         (%{age: 1, name: name}) -> "#{name}: 1 year old"
         (%{age: age, name: name}) -> "#{name}: #{age} years old"
       end)
     end
   end
+
+  # def Ex(map)
+  #   item_tostring = fn person ->
+  #     %{name: n, age: a} = person
+  #   check_years = fn
+  #     1 -> ""
+  #     _ -> ""
+  #     end
+  #     check_years.(a)
+  #   end
+  #   Enum.map_every(map, 1, fn(person) -> item_tostring end)
+  # end
 
 #7.
   defmodule Ex7 do

@@ -5,11 +5,17 @@ defmodule Exercises do
   end
 
 #2.
-  def length_of_tuple({_a}), do: 1
-  def length_of_tuple({_a,_b}), do: 2
-  def length_of_tuple({_a,_b,_c}), do: 3
-  def length_of_tuple({_a,_b,_c,_d}), do: 4
-  def length_of_tuple(_), do: "Shouldn't you use a list"
+  def length_of_tuple(input) do
+    print = fn
+    {_a} -> 1
+    {_a,_b} -> 2
+    {_a,_b,_c} -> 3
+    {_a,_b,_c,_d} -> 4
+    _ -> "Shouldn't you use a list"
+    end
+
+    print.(input)
+  end
 
 #3.
   Enum.filter([1994, 600, 1965, 0, 1, 2019, 2008, 1921, 1936, 1414, 2000, 1992, 2004], fn x -> x > 1999 && x < 2100 end)
