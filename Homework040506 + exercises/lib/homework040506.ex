@@ -1,5 +1,11 @@
 defmodule Homework do
 #1.
+  def solve([a, sign, b]) do
+    case (sign) do
+      ("+") -> (a + b ) * (a * a - a * b + b * b)
+      ("-") -> (a - b) * (a * a + a * b + b * b)
+    end
+  end
 
 #2.
   def respond(str) do
@@ -67,5 +73,31 @@ defmodule Homework do
       b + c
     end
   end
+
+#9.
+  # teams = %{
+  #               "Red" => %{
+  #                 "gk" => {"Jody Reeves", 28, "right", 0},
+  #                 "def" => {"Kevin Martinez", 34, "right", 0},
+  #                 "mid" => {"Melvin Montgomery", 22, "left", 0},
+  #                 "atk" => {"Ramon Stokes", 35, "right", 0}
+  #               },
+  #               "Blue" => %{
+  #                 "gk" => {"Boyd Morris", 48, "left", 0},
+  #                 "def" => {"Nicholas Thomas", 42, "left", 0},
+  #                 "mid" => {"Blake Bradley", 18, "right", 0},
+  #                 "atk" => {"Guadalupe Tran", 32, "left", 0}
+  #               },
+  #               "Green" => %{
+  #                 "gk" => {"Clayton Love", 22, "left", 0},
+  #                 "def" => {"Dennis Rodgers", 25, "left", 0},
+  #                 "mid" => {"Rick Mcdaniel", 33, "right", 0},
+  #                 "atk" => {"Roosevelt Carson", 20, "left", 0}
+  #               }
+  #             }
+  #   score = "Red" beats "blue" 2-1 !
+  # def update_score(teams, score) do
+
+  # end
 
 end
