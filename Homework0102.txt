@@ -1,0 +1,25 @@
+1.
+function = fn
+(1) -> "person"
+(_) -> "people"
+end
+
+2.
+function = fn
+(0, 0, _) -> "FizzBuzz"
+(0, _, _) -> "Fizz"
+(_, 0, _) -> "Buzz"
+(_, _, x) -> x
+end
+
+3.
+concatenate = fn(a, b) -> a <> b end
+
+4.
+comp = fn(a, b) -> String.length(a) > String.length(b) end
+
+5.
+threeInOne = fn(x) -> "length: #{String.length(x)}, third digit: #{String.at(x, 2)}, #{String.capitalize(x)}" end
+
+6.
+replaceAndReverse = fn(x) -> "#{String.replace(x, " ",".")} #{String.reverse(x)}" end

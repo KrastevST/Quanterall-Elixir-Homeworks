@@ -1,0 +1,46 @@
+1.
+  a = [1, 2, 3] true
+  a = 4 true
+  4 = a true (in current context only)
+  [a, b] = [ 1, 2, 3 ] false (number of variables not equal in both lists)
+  a = [ [ 1, 2, 3 ] ] true
+  [a] = [ [ 1, 2, 3 ] ] true
+  [[a]] = [ [ 1, 2, 3 ] ] false (number of variables not equal in inner lists)
+  [x, x] = [1, 1] true
+  [x, x] = [2, 3] false (can not assign different values to the same variable)
+  [x, _, x] = [2, 3] false (number of variables not equal in both lists)
+  [x, z, x] = [2, 3, 2] true
+  [x, 3, x] = [2, 3, 2] true
+
+  [{key, value}] = [key1: "value"] true
+  is this valid -> `[{key: "pair"}, {fruit: apple}]` No because apple can not be a variable and either curly braces should be removed, or the correct syntax should be used inside them {:atom, "string"}
+
+  %{person => [home]} = %{%{"user" => ["color", "tuple", "hobby"]} => "address"} false (person can not be a variable because it is a map key)
+  %{team: points} = %{"points" => 4} false (the keys do not match)
+  %{team: 4} == %{"points" => 4} true (expression is valid even though the result is "false")
+
+2.
+  [{_, fname},{_, age}] = [first_name: "Alice", age: 18]
+
+3.
+  {_, [%{first_name: fname, age: age} | _] } = {:ok, [%{first_name: "Alice", age: 18}, %{first_name: "Bob", age: 21}]}
+
+4.
+  to_tuple = fn([a, b], [c, d]) -> [{a, b}, {c, d}] end
+  to_tuple2 = fn([a, b], [c, d]) -> [{a, c}, {b, d}] end
+  to_keyword_list = fn({a, b, c}, {x, y, z}) -> [{a, x}, {b, y}, {c, z}] end
+
+5.
+  empty = fn(x) -> length(x) === 0 end
+
+6.
+  tuple = {:ok, "Alice"}
+  {_, first_name} = tuple
+
+7.
+  matchData = fn
+  ({:ok, age, first_name}) ->
+  IO.puts first_name
+  IO.puts age
+  (_) -> IO.puts "The format was incorrect"
+  end
