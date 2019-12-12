@@ -1,4 +1,5 @@
 defmodule Homework do
+
 #1.
   def solve([a, sign, b]) do
     case (sign) do
@@ -75,29 +76,54 @@ defmodule Homework do
   end
 
 #9.
-  # teams = %{
-  #               "Red" => %{
-  #                 "gk" => {"Jody Reeves", 28, "right", 0},
-  #                 "def" => {"Kevin Martinez", 34, "right", 0},
-  #                 "mid" => {"Melvin Montgomery", 22, "left", 0},
-  #                 "atk" => {"Ramon Stokes", 35, "right", 0}
-  #               },
-  #               "Blue" => %{
-  #                 "gk" => {"Boyd Morris", 48, "left", 0},
-  #                 "def" => {"Nicholas Thomas", 42, "left", 0},
-  #                 "mid" => {"Blake Bradley", 18, "right", 0},
-  #                 "atk" => {"Guadalupe Tran", 32, "left", 0}
-  #               },
-  #               "Green" => %{
-  #                 "gk" => {"Clayton Love", 22, "left", 0},
-  #                 "def" => {"Dennis Rodgers", 25, "left", 0},
-  #                 "mid" => {"Rick Mcdaniel", 33, "right", 0},
-  #                 "atk" => {"Roosevelt Carson", 20, "left", 0}
-  #               }
-  #             }
-  #   score = "Red" beats "blue" 2-1 !
-  # def update_score(teams, score) do
+  def update_data(team1, team2, score1, score2) do
+    data = %{
+      "Red" => %{
+        "gk" => {"Jody Reeves", 28, "right", 0},
+        "def" => {"Kevin Martinez", 34, "right", 0},
+        "mid" => {"Melvin Montgomery", 22, "left", 0},
+        "atk" => {"Ramon Stokes", 35, "right", 0}
+      },
+      "Blue" => %{
+        "gk" => {"Boyd Morris", 48, "left", 0},
+        "def" => {"Nicholas Thomas", 42, "left", 0},
+        "mid" => {"Blake Bradley", 18, "right", 0},
+        "atk" => {"Guadalupe Tran", 32, "left", 0}
+      },
+      "Green" => %{
+        "gk" => {"Clayton Love", 22, "left", 0},
+        "def" => {"Dennis Rodgers", 25, "left", 0},
+        "mid" => {"Rick Mcdaniel", 33, "right", 0},
+        "atk" => {"Roosevelt Carson", 20, "left", 0}
+      }
+    }
+    Map.update!(data, team1, &(update_team(&1, score1, score2)))
+    |> Map.update!(team2, &(update_team(&1, score2, score1)))
+  end
 
-  # end
-
+  defp update_team(team, 0, conceded) do
+    update_player(team, "gk", -conceded)
+  end
+  defp update_team(team, 1, conceded) do
+    update_player(team, "gk", -conceded)
+    |> update_player("atk", 1)
+  end
+  defp update_team(team, 2, conceded) do
+    update_player(team, "gk", -conceded)
+    |> update_player("atk", 2)
+  end
+  defp update_team(team, 3, conceded) do
+    update_player(team, "gk", -conceded)
+    |> update_player("atk", 2)
+    |> update_player("mid", 1)
+  end
+  defp update_team(team, 4, conceded) do
+    update_player(team, "gk", -conceded)
+    |> update_player("atk", 2)
+    |> update_player("mid", 1)
+    |> update_player("def", 1)
+  end
+  defp update_player(team, player, goals) do
+    Map.replace!(team, player, put_elem(Map.fetch!(team, player), 3, goals))
+  end
 end
